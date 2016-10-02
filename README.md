@@ -3,26 +3,28 @@ Setup gekregen van Jeroen en van http://iot-projects.com/index.php?id=connect-ds
 
 ## Steps
 
-### Install MariaDB
-### create DB
-### Create users
-### Test db
+Install MariaDB
+create DB
+Create users
+Test db
 
-### Install 1Wire
-### Test ds18b20
+Install 1Wire
+Test ds18b20
 
-### Create website
-### Test PHP
-### Test PHP/Mysql
-### Test Json output
-### Test Amcharts
+Create website
+Test PHP
+Test PHP/Mysql
+Test Json output
+Test Amcharts
 
-# Ready
+Ready
 
 
 ## Install MariaDB
 
+```
 gej@rpib2 ~/ds18b20-mysql $ sudo apt --assume-yes install mariadb-client mariadb-server
+```
 
 Je moet nu wel je "master" wachtwoord zetten voor de database.
 
@@ -37,13 +39,17 @@ password=ErgMoeilijkWachtwoord890
 
 ## Create DB
 
+Met een script
+```
 gej@rpib2 ~/ds18b20-mysql/db $ mysql temperature < create_db.sql 
 ERROR 1049 (42000): Unknown database 'temperature'
 gej@rpib2 ~/ds18b20-mysql/db $ mysql  < create_db.sql 
+```
 
-Create DB by hand
+Create DB met de hand
 
-sudo mysql -u root -p
+```
+gej@rpib2 ~/ds18b20-mysql $ sudo mysql -u root -p
 
 CREATE DATABASE temperature;
 
@@ -54,14 +60,16 @@ CREATE TABLE DS18B20( measurement_id INT NOT NULL AUTO_INCREMENT,
                       time TIME NOT NULL,
                       value varchar(50),
                       PRIMARY KEY ( measurement_id ));
-
+```
 
 
 # Create DB User
 
+Syntax:
 GRANT INSERT,SELECT ON temperature.* TO 'temp_user1'@'localhost' IDENTIFIED BY 'pwd_user1';
 FLUSH PRIVILEGES;
 
+```
 gej@rpib2 ~/ds18b20-mysql $ mysql -u root -p
 Enter password: 
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
@@ -79,22 +87,27 @@ MariaDB [(none)]> FLUSH PRIVILEGES;
 Query OK, 0 rows affected (0.00 sec)
 
 MariaDB [(none)]> 
+```
 
 ## Test DB
 
+```
 gej@rpib2 ~/ds18b20-mysql $ python sen2db.py 
 Traceback (most recent call last):
   File "sen2db.py", line 5, in <module>
     import MySQLdb as mdb
 ImportError: No module named MySQLdb
 gej@rpib2 ~/ds18b20-mysql $
+```
 
 Oh jee, error, even mysql-python installeren
 
+```
 gej@rpib2 ~/ds18b20-mysql $ sudo apt install python-mysqldb
+```
 
 # Controle DB
-
+```
 gej@rpib2 ~/ds18b20-mysql $ mysql
 Welcome to the MariaDB monitor.  Commands end with ; or \g.
 Your MariaDB connection id is 39
@@ -138,7 +151,7 @@ MariaDB [temperature]> select * from temp_log;
 1 row in set (0.00 sec)
 
 MariaDB [temperature]> 
-
+```
 
 Dit kan natuurlijk ook met een oneliner:
 
