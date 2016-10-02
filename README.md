@@ -3,21 +3,21 @@ Setup gekregen van Jeroen en van http://iot-projects.com/index.php?id=connect-ds
 
 ## Steps
 
-Install MariaDB
-create DB
-Create users
-Test db
+* Install MariaDB
+* create DB
+* Create users
+* Test db
 
-Install 1Wire
-Test ds18b20
+* Install 1Wire
+* Test ds18b20
 
-Create website
-Test PHP
-Test PHP/Mysql
-Test Json output
-Test Amcharts
+* Create website
+* Test PHP
+* Test PHP/Mysql
+* Test Json output
+* Test Amcharts
 
-Ready
+* Ready
 
 
 ## Install MariaDB
